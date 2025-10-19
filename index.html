@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Diwali</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg-start: #2E1A47;
+      --color-bg-mid: #7B3F00;
+      --color-bg-end: #F9A826;
+      --color-accent: #FFD700;
+      --color-highlight: #FF8C00;
+      --color-text: #FFF5E1;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--color-bg-start), var(--color-bg-mid), var(--color-bg-end));
+      color: var(--color-text);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-shadow: 0 0 15px var(--color-accent), 0 0 30px var(--color-highlight);
+      margin-bottom: 1.5rem;
+      animation: glowText 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes glowText {
+      from { text-shadow: 0 0 10px var(--color-accent); }
+      to { text-shadow: 0 0 30px var(--color-highlight), 0 0 60px var(--color-accent); }
+    }
+
+    .input-container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+
+    label {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    input {
+      padding: 0.7rem 1rem;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      width: 220px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 1.5rem;
+      padding: 0.8rem 2rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(90deg, var(--color-highlight), var(--color-accent));
+      color: #1E0F00;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--color-accent), 0 0 40px var(--color-highlight);
+    }
+
+    /* Floating diya animation */
+    .diya {
+      position: absolute;
+      bottom: 50px;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(ellipse at center, var(--color-highlight) 0%, #000 70%);
+      border-radius: 50% 50% 0 0;
+      box-shadow: 0 0 20px var(--color-accent);
+      animation: flicker 2s infinite ease-in-out;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; transform: translateY(0px); }
+      50% { opacity: 0.7; transform: translateY(-5px); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🪔 Happy Diwali 🪔</h1>
+  <div class="input-container">
+    <label for="username">Enter your name to begin:</label>
+    <input type="text" id="username" placeholder="Your Name" required>
+    <br>
+    <button onclick="goNext()">Continue</button>
+  </div>
+
+  <div class="diya"></div>
+
+  <script>
+    function goNext() {
+      const name = document.getElementById('username').value.trim();
+      if (name === "") {
+        alert("Please enter your name!");
+        return;
+      }
+      // Save name and go to next page
+      localStorage.setItem("diwaliUserName", name);
+      window.location.href = "story.html";
+    }
+  </script>
+
+</body>
+</html>
